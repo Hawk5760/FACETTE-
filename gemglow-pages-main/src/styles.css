@@ -1,0 +1,179 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Facette & Co. design system — brand palette:
+   Soft Ivory #E9E4DC · Deep Emerald #0E3D3D · Champagne Gold #D5B581
+   Rich Emerald #05624C · Deep Charcoal #232A36 · Bone White #D6D5D0 */
+
+@theme inline {
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-ivory: var(--ivory);
+  --color-emerald: var(--emerald);
+  --color-emerald-deep: var(--emerald-deep);
+  --color-charcoal: var(--charcoal);
+  --color-bone: var(--bone);
+}
+
+:root {
+  --radius: 0px;
+  --ivory: oklch(0.917 0.011 75);
+  --bone: oklch(0.867 0.006 100);
+  --gold: oklch(0.79 0.075 80);
+  --emerald: oklch(0.43 0.085 168);
+  --emerald-deep: oklch(0.32 0.045 190);
+  --charcoal: oklch(0.27 0.025 260);
+  --ink: oklch(0.17 0.012 250);
+
+  --background: var(--ink);
+  --foreground: var(--ivory);
+  --card: oklch(0.21 0.015 250);
+  --card-foreground: var(--ivory);
+  --popover: var(--charcoal);
+  --popover-foreground: var(--ivory);
+  --primary: var(--gold);
+  --primary-foreground: var(--ink);
+  --secondary: var(--emerald-deep);
+  --secondary-foreground: var(--ivory);
+  --muted: var(--charcoal);
+  --muted-foreground: oklch(0.72 0.012 80);
+  --accent: var(--emerald);
+  --accent-foreground: var(--ivory);
+  --destructive: oklch(0.6 0.2 27);
+  --destructive-foreground: var(--ivory);
+  --border: oklch(0.79 0.075 80 / 22%);
+  --input: oklch(0.79 0.075 80 / 40%);
+  --ring: var(--gold);
+
+  --gradient-emerald: linear-gradient(90deg, var(--emerald-deep), var(--emerald));
+  --gradient-gold: linear-gradient(90deg, var(--gold), var(--ivory));
+  --gradient-fade: linear-gradient(180deg, transparent 0%, var(--ink) 100%);
+  --gradient-hero: linear-gradient(90deg, var(--ink) 0%, oklch(0.17 0.012 250 / 70%) 45%, transparent 100%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.01em; }
+  ::selection { background: var(--gold); color: var(--ink); }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .display { font-family: var(--font-serif); line-height: 1.02; letter-spacing: -0.02em; }
+  .container-x { width: 100%; max-width: 1360px; margin-inline: auto; padding-inline: 1.5rem; }
+  @media (min-width: 768px) { .container-x { padding-inline: 3rem; } }
+  .hairline { border-color: var(--border); }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: var(--gold); color: var(--ink);
+    padding: 1rem 1.75rem; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500;
+    transition: background 0.4s, transform 0.4s;
+  }
+  .btn-gold:hover { background: var(--ivory); }
+  .btn-line {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    border: 1px solid var(--input); color: var(--ivory);
+    padding: 1rem 1.75rem; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
+    transition: border-color 0.4s, color 0.4s;
+  }
+  .btn-line:hover { border-color: var(--gold); color: var(--gold); }
+  .field {
+    width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--input);
+    padding: 0.85rem 0; color: var(--ivory); font-size: 1rem; outline: none; border-radius: 0;
+    transition: border-color 0.3s;
+  }
+  .field::placeholder { color: var(--muted-foreground); opacity: 0.7; }
+  .field:focus { border-color: var(--gold); }
+  .field option { background: var(--charcoal); color: var(--ivory); }
+  .field-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+  .surface-ivory { background: var(--ivory); color: var(--ink); }
+  .surface-ivory .eyebrow { color: var(--emerald); }
+  .surface-emerald { background: var(--gradient-emerald); color: var(--ivory); }
+  .text-gradient-gold { background: var(--gradient-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.1s cubic-bezier(.2,.7,.2,1), transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .img-frame { position: relative; overflow: hidden; outline: 1px solid var(--border); outline-offset: -1px; }
+  .img-frame img { transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
+  .img-frame:hover img { transform: scale(1.04); }
+}
+
+@keyframes slow-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+.animate-slow-zoom { animation: slow-zoom 6s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 0 oklch(0.79 0.075 80 / 60%); } 50% { box-shadow: 0 0 0 10px oklch(0.79 0.075 80 / 0%); } }
+.pulse-dot { animation: pulse-dot 3s ease-in-out infinite; }
+
+/* Restrained luxury map cartographic keyframes */
+@keyframes svg-pulse {
+  0% {
+    r: 4px;
+    stroke-opacity: 0.65;
+  }
+  50% {
+    r: 12px;
+    stroke-opacity: 0;
+  }
+  100% {
+    r: 12px;
+    stroke-opacity: 0;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+
+/* Scroll-driven chapter hero (ported from Arcen) */
+:root { --chapter-track: oklch(0.917 0.011 75 / 0.24); --chapter-progress: var(--gold); }
+.chapter-shade {
+  background: linear-gradient(90deg, oklch(0.12 0.01 250 / 0.82), oklch(0.12 0.01 250 / 0.38) 58%, oklch(0.12 0.01 250 / 0.18)), linear-gradient(0deg, oklch(0.17 0.012 250 / 1), transparent 30%);
+}
+.chapter-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.23'/%3E%3C/svg%3E");
+}
+.chapter-copy { animation: chapter-enter 0.8s cubic-bezier(.16,1,.3,1) both; }
+@keyframes chapter-enter { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .chapter-copy { animation: none; } }

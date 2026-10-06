@@ -1,0 +1,14 @@
+{
+  "name": "gemglow-pages-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Root workspace proxy for Gemstone Showcase",
+  "scripts": {
+    "dev": "npm --prefix gemglow-pages-main run dev",
+    "build": "npm --prefix gemglow-pages-main run build",
+    "build:dev": "npm --prefix gemglow-pages-main run build:dev",
+    "preview": "npm --prefix gemglow-pages-main run preview",
+    "test": "npm --prefix gemglow-pages-main run test",
+    "lint": "npm --prefix gemglow-pages-main run lint"
+  }
+}
